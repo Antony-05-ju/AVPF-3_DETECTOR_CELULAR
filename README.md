@@ -1,77 +1,179 @@
-# 📱 Detector de Celulares mediante Haar Cascade y OpenCV
+# DETECTOR DE CELULARES MEDIANTE HAAR CASCADE Y OPENCV
 
-Sistema de detección de celulares en tiempo real desarrollado en **Python**, utilizando **OpenCV** y el algoritmo de clasificación **Haar Cascade**. El proyecto utiliza un modelo entrenado con imágenes propias y permite realizar detecciones mediante una cámara web o un dispositivo móvil conectado a través de DroidCam.
+## 1. Descripción del proyecto
 
-## 📌 Descripción del proyecto
+El presente proyecto consiste en el desarrollo de un sistema de detección de teléfonos celulares en tiempo real, mediante técnicas de visión computacional, utilizando Python, OpenCV y el algoritmo de clasificación Haar Cascade.
 
-Este proyecto consiste en desarrollar un detector personalizado capaz de identificar teléfonos celulares mediante técnicas de visión computacional.
+El sistema utiliza un clasificador personalizado, entrenado a partir de un conjunto de imágenes positivas y negativas, para identificar posibles teléfonos celulares a través de una cámara web o un dispositivo móvil conectado mediante DroidCam.
 
-Para su desarrollo se construyó un conjunto de datos propio, se entrenó un clasificador Haar Cascade y posteriormente se implementó el modelo en Python utilizando OpenCV para realizar detecciones en tiempo real.
+Cuando el programa identifica una posible coincidencia, muestra un rectángulo verde y la etiqueta "Celular" sobre la región detectada.
 
-El sistema identifica posibles celulares y muestra rectángulos verdes con la etiqueta **"Celular"** sobre las regiones detectadas.
+Este proyecto fue desarrollado como parte del Avance de Proyecto Final 3 (AVPF-3) del curso Herramientas de Desarrollo Profesional - Civil, de la Universidad Tecnológica del Perú.
 
-## 📊 Dataset utilizado
+## 2. Objetivos del proyecto
 
-Para el entrenamiento del clasificador se utilizaron las siguientes imágenes:
+### Objetivo general
 
-| Tipo de imágenes | Cantidad | Descripción |
-|---|---:|---|
-| Positivas (p) | 168 | Imágenes que contienen celulares. |
-| Negativas (n) | 407 | Imágenes de fondos y escenas sin el objeto. |
-| **Total** | **575** | Conjunto de imágenes utilizado. |
+Desarrollar un sistema de detección de celulares en tiempo real mediante el entrenamiento e implementación de un clasificador Haar Cascade utilizando Python y OpenCV.
 
-## ⚙️ Herramientas y tecnologías
+### Objetivos específicos
 
-- **Python:** lenguaje de programación.
-- **OpenCV:** procesamiento de imágenes y detección de objetos.
-- **Haar Cascade:** algoritmo de clasificación utilizado para reconocer celulares.
-- **Cascade Trainer GUI:** herramienta utilizada para configurar y ejecutar el entrenamiento.
-- **DroidCam:** conexión de la cámara del celular con la computadora.
-- **Visual Studio Code:** entorno de desarrollo.
+- Construir un conjunto de imágenes positivas y negativas para el entrenamiento.
+- Preparar y procesar las muestras mediante herramientas de OpenCV.
+- Entrenar un clasificador personalizado utilizando Cascade Trainer GUI.
+- Implementar el modelo entrenado mediante Python.
+- Realizar pruebas de detección utilizando DroidCam.
+- Analizar los resultados y las limitaciones del sistema.
 
-## 📁 Estructura del proyecto
+## 3. Tecnologías y herramientas utilizadas
+
+| Herramienta | Aplicación |
+|---|---|
+| Python | Desarrollo del programa de detección. |
+| OpenCV | Procesamiento de imágenes y visión computacional. |
+| Haar Cascade | Clasificación y detección del celular. |
+| Cascade Trainer GUI | Configuración y entrenamiento del clasificador. |
+| DroidCam | Captura de video mediante el celular. |
+| Visual Studio Code | Edición y ejecución del código. |
+| CMD | Ejecución de comandos y scripts. |
+| Git y GitHub | Control de versiones y publicación del proyecto. |
+
+## 4. Estructura del proyecto
 
 ```text
 Detector-Celular-HaarCascade/
 │
-├── p/                              # Imágenes positivas
-├── n/                              # Imágenes negativas
+├── p/
+│   └── Imágenes positivas del celular
 │
-├── classifier/                     # Archivos del entrenamiento
-│   ├── cascade.xml
-│   ├── params.xml
-│   ├── log.txt
-│   └── stage*.xml
+├── n/
+│   └── Imágenes negativas del entorno
 │
-├── cascade.xml                      # Clasificador utilizado
+├── classifier/
+│   └── Archivos generados durante el entrenamiento
 │
-├── pos_samples.vec                  # Muestras positivas generadas
+├── cascade.xml
+│
+├── pos_samples.vec
 │
 ├── Detector_Celular_B_Movil_V1.py
 ├── Detector_Celular_B_Movil_V2.py
 ├── Detector_Celular_B_Movil_V3.py
 ├── Detector_Celular_B_Movil_V4.py
-├── Detector_Celular_B_Movil_V5.py  # Programa principal
-│
-├── Detector_Celular_B_p.py
-├── Detector_Celular_B_n.py
+├── Detector_Celular_B_Movil_V5.py
 │
 └── README.md
 ```
 
-## 📥 Cómo descargar y utilizar este proyecto
+Nota: La estructura representa los principales elementos del proyecto. Los archivos auxiliares deben conservar sus nombres y ubicaciones originales.
 
-### Opción 1 — Descargar archivo ZIP
+## 5. Construcción del dataset
+
+Para desarrollar el clasificador se construyó un conjunto de datos propio, organizado en dos categorías:
+
+| Categoría | Cantidad | Característica |
+|---|---:|---|
+| Positivas (p) | 168 | Imágenes que contienen el celular. |
+| Negativas (n) | 407 | Imágenes que no contienen el objeto de interés. |
+| Total | 575 | Imágenes utilizadas. |
+
+Las imágenes fueron capturadas, recortadas y organizadas mediante scripts desarrollados en Python.
+
+La carpeta `p` contiene las imágenes positivas utilizadas para identificar las características visuales del celular, mientras que la carpeta `n` contiene imágenes negativas que permiten al clasificador diferenciar el objeto de otros elementos del entorno.
+
+## 6. Procedimiento de desarrollo y entrenamiento
+
+El desarrollo del proyecto siguió las etapas establecidas en la metodología de entrenamiento mediante clasificadores en cascada.
+
+### Paso 1. Consulta de la documentación
+
+Se revisó la documentación de OpenCV sobre el funcionamiento y entrenamiento de clasificadores en cascada.
+
+Documentación oficial:
+
+https://docs.opencv.org/4.x/dc/d88/tutorial_traincascade.html
+
+### Paso 2. Instalación de Cascade Trainer GUI
+
+Se descargó e instaló Cascade Trainer GUI, herramienta utilizada para configurar y ejecutar el entrenamiento del clasificador Haar Cascade.
+
+### Paso 3. Creación de la carpeta del objeto
+
+Se creó la estructura de trabajo correspondiente al objeto que se desea detectar: el teléfono celular.
+
+### Paso 4. Captura y organización de imágenes
+
+Se utilizaron scripts de Python para capturar, recortar y guardar las fotografías en sus respectivas carpetas:
+
+- `p`: imágenes positivas.
+- `n`: imágenes negativas.
+
+Para utilizar la biblioteca auxiliar imutils, se instaló mediante:
+
+```bash
+pip install imutils
+```
+
+### Paso 5. Entrenamiento del clasificador
+
+Se configuró el entrenamiento mediante Cascade Trainer GUI, utilizando las muestras positivas y negativas previamente preparadas.
+
+Características del entrenamiento:
+
+| Parámetro | Valor |
+|---|---|
+| Clasificador | HAAR |
+| Imágenes positivas | 168 |
+| Imágenes negativas | 407 |
+| Tamaño de muestra | 24 × 24 píxeles |
+| Etapas configuradas | 12 |
+| Etapas alcanzadas | 11 |
+
+El entrenamiento finalizó en 11 etapas al alcanzarse la condición de falsas alarmas establecida durante el proceso.
+
+Como resultado se obtuvo el archivo `cascade.xml`, que contiene el clasificador entrenado.
+
+### Paso 6. Implementación del detector en Python
+
+Una vez obtenido el modelo, se desarrolló el programa de detección utilizando OpenCV.
+
+El script principal es:
+
+```bash
+python Detector_Celular_B_Movil_V5.py
+```
+
+El programa realiza las siguientes operaciones:
+
+1. Importa las bibliotecas necesarias.
+2. Establece la conexión con la cámara mediante DroidCam.
+3. Carga el clasificador utilizando `cv2.CascadeClassifier()`.
+4. Convierte los fotogramas a escala de grises.
+5. Ejecuta la función `detectMultiScale()` para identificar posibles coincidencias.
+6. Dibuja rectángulos verdes sobre las regiones detectadas.
+7. Muestra la etiqueta "Celular" en la ventana de video.
+
+## 7. Instalación y ejecución del proyecto
+
+### Requisitos previos
+
+- Windows 10 o Windows 11.
+- Python instalado.
+- Visual Studio Code o una terminal CMD.
+- DroidCam instalado en el celular y en la computadora, si se utiliza este método de captura.
+- Archivo `cascade.xml` correspondiente al modelo entrenado.
+
+### Opción 1. Descargar el repositorio en ZIP
 
 1. Ingresa a la página principal del repositorio.
-2. Haz clic en el botón verde **Code (Código)**.
-3. Selecciona **Download ZIP (Descargar ZIP)**.
+2. Selecciona el botón "Code".
+3. Haz clic en "Download ZIP".
 4. Descomprime el archivo en tu computadora.
 5. Abre la carpeta del proyecto en Visual Studio Code.
 
-### Opción 2 — Clonar mediante Git
+### Opción 2. Clonar el repositorio mediante Git
 
-Abre CMD o una terminal y ejecuta:
+Ejecuta el siguiente comando:
 
 ```bash
 git clone https://github.com/TU-USUARIO/Detector-Celular-HaarCascade.git
@@ -83,54 +185,78 @@ Ingresa a la carpeta:
 cd Detector-Celular-HaarCascade
 ```
 
-## 🛠️ Instalación y configuración
-
-### 1. Instalar Python
-
-Descarga Python desde:
-
-https://www.python.org/downloads/
-
-Durante la instalación, activa la opción **Add Python to PATH**.
-
-Verifica que Python esté instalado:
-
-```bash
-python --version
-```
-
-### 2. Instalar las bibliotecas necesarias
+### Instalación de bibliotecas
 
 Abre CMD o la terminal de Visual Studio Code y ejecuta:
 
 ```bash
-pip install opencv-python numpy imutils
+pip install opencv-python imutils
 ```
 
-Estas bibliotecas permiten realizar el procesamiento de imágenes y ejecutar los scripts auxiliares del proyecto.
+### Verificación de OpenCV y Haar Cascade
 
-### 3. Configurar DroidCam
+Antes de ejecutar el detector, comprueba que OpenCV tenga disponible la función CascadeClassifier.
 
-Para utilizar la cámara del celular:
-
-1. Instala DroidCam en tu dispositivo móvil.
-2. Abre DroidCam en tu computadora.
-3. Conecta ambos dispositivos a la misma red Wi-Fi.
-4. Identifica la dirección IP y el puerto que muestra DroidCam.
-5. Abre el archivo `Detector_Celular_B_Movil_V5.py` en Visual Studio Code.
-6. Busca la siguiente línea:
+Abre Python y ejecuta:
 
 ```python
-cap = cv2.VideoCapture("http://TU_IP_DROIDCAM:4747/video")
+import cv2
+
+print(cv2.__version__)
+
+print(hasattr(cv2, 'CascadeClassifier'))
 ```
 
-7. Reemplaza `TU_IP_DROIDCAM` por la dirección IP que aparece en tu aplicación DroidCam.
+El resultado esperado de la última instrucción es:
 
-**Importante:** utiliza la dirección IP y el puerto correspondientes a tu propia conexión. La dirección de cada dispositivo puede ser diferente.
+```text
+True
+```
 
-### 4. Ejecutar el detector
+Si el resultado es `False`, puede existir una instalación incompleta o una incompatibilidad de OpenCV.
 
-Verifica que el archivo `cascade.xml` se encuentre en la misma carpeta que el programa principal.
+En ese caso, se recomienda realizar el siguiente procedimiento.
+
+Desinstalar OpenCV:
+
+```bash
+pip uninstall opencv-python
+```
+
+Instalar la versión indicada en la guía del docente:
+
+```bash
+pip install opencv-python==4.10.0.84
+```
+
+Volver a ejecutar la prueba:
+
+```python
+import cv2
+
+print(hasattr(cv2, 'CascadeClassifier'))
+```
+
+El resultado esperado es:
+
+```text
+True
+```
+
+### Configuración de DroidCam
+
+Para utilizar el celular como cámara:
+
+1. Instala y abre DroidCam en el dispositivo móvil.
+2. Ejecuta DroidCam en la computadora.
+3. Conecta ambos dispositivos a la misma red Wi-Fi.
+4. Identifica la dirección IP y el puerto mostrados por la aplicación.
+5. Abre `Detector_Celular_B_Movil_V5.py`.
+6. Configura la dirección de conexión correspondiente a tu dispositivo.
+
+La dirección IP y el puerto deben corresponder a la conexión activa de DroidCam. No utilices una dirección de otro equipo.
+
+### Ejecución del detector
 
 Desde la terminal, ejecuta:
 
@@ -138,46 +264,36 @@ Desde la terminal, ejecuta:
 python Detector_Celular_B_Movil_V5.py
 ```
 
-El programa abrirá una ventana de video en tiempo real y mostrará rectángulos verdes con la etiqueta **Celular** cuando identifique posibles coincidencias.
+Se abrirá una ventana de video en tiempo real donde se visualizarán las detecciones del celular mediante rectángulos verdes y etiquetas.
 
-Para finalizar la ejecución, presiona la tecla **ESC**.
+Para finalizar el programa, presiona la tecla ESC.
 
-## 🧠 Entrenamiento del clasificador
+## 8. Resultados obtenidos
 
-El modelo fue desarrollado utilizando el algoritmo Haar Cascade mediante Cascade Trainer GUI.
+El sistema fue probado utilizando DroidCam como fuente de video.
 
-Características principales del entrenamiento:
+Durante las pruebas se consiguió detectar el teléfono celular y delimitarlo mediante rectángulos verdes, mostrando la etiqueta correspondiente.
 
-| Parámetro | Valor |
-|---|---|
-| Tipo de clasificador | HAAR |
-| Muestras positivas | 168 |
-| Muestras negativas | 407 |
-| Tamaño de muestra | 24 × 24 píxeles |
-| Etapas configuradas | 12 |
-| Etapas del modelo final | 11 |
+También se identificaron detecciones adicionales o falsos positivos en determinadas condiciones de prueba.
 
-Como resultado se obtuvo el archivo `cascade.xml`, utilizado posteriormente para realizar la detección mediante OpenCV.
+Estos resultados evidencian que el modelo cumple parcialmente con el objetivo de detección, pero todavía presenta limitaciones relacionadas con la variedad del dataset, las condiciones de iluminación, la orientación del objeto y los parámetros del clasificador.
 
-## 🎯 Resultados obtenidos
+Los resultados corresponden a pruebas experimentales y no representan una medición estadística general de precisión.
 
-El detector fue implementado y probado utilizando DroidCam como fuente de video.
+## 9. Limitaciones y posibles mejoras
 
-Durante las pruebas se consiguió identificar el celular mediante rectángulos verdes y etiquetas de texto.
+Entre las principales limitaciones identificadas se encuentran:
 
-Sin embargo, también se observaron algunas detecciones adicionales o falsos positivos, por lo que el modelo presenta oportunidades de mejora relacionadas con la calidad y variedad del dataset y los parámetros del clasificador.
+- Variabilidad limitada de algunas imágenes positivas.
+- Diferencias entre las condiciones de entrenamiento y las pruebas reales.
+- Sensibilidad a cambios de iluminación y orientación.
+- Aparición de falsos positivos.
+- Necesidad de ampliar y diversificar el dataset.
+- Posibilidad de optimizar los parámetros del clasificador.
 
-## ⚠️ Consideraciones importantes
+Como mejoras futuras se propone incrementar la cantidad y variedad de imágenes, realizar nuevas pruebas experimentales y ajustar los parámetros del entrenamiento para reducir las detecciones incorrectas.
 
-- Es necesario tener Python instalado y las bibliotecas correspondientes.
-- Para utilizar DroidCam, ambos dispositivos deben estar conectados a la misma red.
-- La dirección IP y el puerto deben configurarse de acuerdo con la conexión actual.
-- No elimines ni cambies de ubicación el archivo `cascade.xml` sin actualizar la ruta en el código.
-- El modelo fue entrenado específicamente para detectar celulares.
-- Los resultados pueden variar según la iluminación, orientación, distancia y condiciones del entorno.
-- Si la cámara no se conecta, verifica que DroidCam esté activo y que ningún otro programa esté utilizando la cámara.
-
-## 👨‍💻 Autor
+## 10. Autor
 
 **Antony Daniel Juárez Litano**
 
@@ -185,10 +301,21 @@ Universidad Tecnológica del Perú (UTP)
 
 Curso: Herramientas de Desarrollo Profesional - Civil
 
+Sección: 49744
+
 Proyecto: Avance de Proyecto Final 3 (AVPF-3)
 
 Año: 2026
 
+## 11. Referencias y documentación
+
+- OpenCV. Documentación sobre entrenamiento de clasificadores en cascada: https://docs.opencv.org/4.x/dc/d88/tutorial_traincascade.html
+- Python. Sitio oficial de descarga: https://www.python.org/downloads/
+- OpenCV. Biblioteca de visión computacional: https://opencv.org/
+- Cascade Trainer GUI. Herramienta de entrenamiento utilizada durante el desarrollo, según la guía proporcionada en clase.
+
 ---
 
-**Desarrollado con Python, OpenCV y Haar Cascade.**
+## Información adicional
+
+Este repositorio contiene los archivos principales del proyecto académico y permite consultar el procedimiento de preparación del dataset, entrenamiento del clasificador e implementación del detector de celulares mediante Python y OpenCV.
